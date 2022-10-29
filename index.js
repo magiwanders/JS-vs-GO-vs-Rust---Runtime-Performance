@@ -1,4 +1,4 @@
-import init from '/JS-vs-GO-vs-Rust---Runtime-Performance/pkg/runtime_experiments.js';
+import init from '/JS-vs-GO-vs-Rust---Runtime-Performance/runtime_experiments.js';
 import draw_plot from '/JS-vs-GO-vs-Rust---Runtime-Performance/plot.js';
 
 var rust
