@@ -21,8 +21,8 @@ export function run_tests() {
         'N': []
     }
 
-    for (var P = 0; P <= 25; P+=10) {
-        for (var N = 0; N <= 50; N+=10) {
+    for (var P = 0; P <= 100; P+=10) {
+        for (var N = 0; N <= 100; N+=10) {
             data.P.push(P)
             data.N.push(N)
             var times = test(P, N)
