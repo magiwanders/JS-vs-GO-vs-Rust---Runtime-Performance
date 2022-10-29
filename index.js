@@ -42,7 +42,7 @@ export async function test(P, N) {
     const start = performance.now();
     js_test(P, N)
     const end1a = performance.now();
-    js_test_multithreaded(P, N)
+    await js_test_multithreaded(P, N)
     const end1b = performance.now();
     go_test(P, N, false)
     const end2a = performance.now();
