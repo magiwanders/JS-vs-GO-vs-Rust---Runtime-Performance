@@ -73,8 +73,8 @@ export async function test(P, N) {
 }
 
 function js_test(P, N) {
-    var a = 1
-    var b = 1
+    var a = 0.5
+    var b = 0.5
     for (var p = 0; p < P; p++) {
         a = Math.random()
         for (var i = 0; i < N; i++) {
@@ -91,8 +91,8 @@ function js_test(P, N) {
 async function js_test_multithreaded(P, N) {
     var worker = new Array(P).fill(new Worker('./mult.js'))
     var finished = new Array(P).fill(false)
-    var a = 1
-    var b = 1
+    var a = 0.5
+    var b = 0.5
     for (var p = 0; p < P; p++) {
         console.log("worker")
         worker[p].postMessage([b, a, N]);
@@ -102,6 +102,7 @@ async function js_test_multithreaded(P, N) {
 		};
     }
     while(!finished.every(worker => worker === true)) await delay(1)
+    console.log('Ended multithreaded test')
     return b
 }
 
