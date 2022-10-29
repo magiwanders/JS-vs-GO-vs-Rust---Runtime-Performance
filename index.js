@@ -69,7 +69,7 @@ export async function test(P, N) {
     return times
 }
 
-async function js_test(P, N) {
+function js_test(P, N) {
     var a = 1
     var b = 1
     for (var p = 0; p < P; p++) {
