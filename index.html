@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+
+<head>
+    <script src="wasm_exec.js"></script>
+    <script>
+
+        if (WebAssembly) {
+             // WebAssembly.instantiateStreaming is not currently available in Safari
+             if (WebAssembly && !WebAssembly.instantiateStreaming) { // polyfill
+                 WebAssembly.instantiateStreaming = async (resp, importObject) => {
+                    const source = await (await resp).arrayBuffer();
+                     return await WebAssembly.instantiate(source, importObject);
+                 };
+             }
+
+             const go = new Go();
+             WebAssembly.instantiateStreaming(fetch("main.wasm"), go.importObject).then((result) => {
+                go.run(result.instance);
+             });
+        } else {
+           console.log("WebAssembly is not supported in your browser")
+        }
+
+    </script>
+    <script src="index.js" type = "module"></script>
+    <script src='https://cdn.plot.ly/plotly-2.16.1.min.js'>
+    <script src="plot.js" type = "module" ></script>
+</head>
+
+<body>
+<button id = 'create_plot' onclick="run_tests()">Create Plot</button>
+(takes a while, see the console)
+<div id='3d_plot'></div>
+</body>
+
+</html>
