@@ -15,21 +15,19 @@ func go_test(this js.Value, args []js.Value) interface{} {
 	var b = 1
 	for p := 0; p < P; p++ {
 		a = rand.Int()
-		for i := 0; i < N; i++ {
-			for j := 0; j < N; j++ {
-				for k := 0; k < N; k++ {
-					if (parallelize) {go last_loop(b, a, N)} else {last_loop(b, a, N)}
-				}
-			}
-		}
+		if (parallelize) {go last_loops(b, a, N)} else {last_loops(b, a, N)}
 	}
 	return b
 }
 
-func last_loop(b int, a int, N int) int {
-    for k := 0; k < N; k++ {
-        b += b * a
-    }
+func last_loops(b int, a int, N int) int {
+		for i := 0; i < N; i++ {
+			for j := 0; j < N; j++ {
+				for k := 0; k < N; k++ {
+                    b += b * a
+				}
+			}
+		}
     return b
 }
 
