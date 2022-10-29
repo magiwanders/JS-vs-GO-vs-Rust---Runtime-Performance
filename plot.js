@@ -20,6 +20,16 @@ export default function draw_plot(data) {
           y: data.N,
           z: data.go_time,
         },
+          {
+          name: 'Go Parallelized',
+          showlegend: true,
+          opacity:0.2,
+          color:'black',
+          type: 'mesh3d',
+          x: data.P,
+          y: data.N,
+          z: data.go_time,
+        },
            {
            name: 'Rust',
            showlegend: true,

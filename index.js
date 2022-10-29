@@ -16,6 +16,7 @@ export function run_tests() {
     var data = {
         'js_time': [],
         'go_time': [],
+        'go_parallelized_time': [],
         'rust_time': [],
         'P': [],
         'N': []
@@ -28,6 +29,7 @@ export function run_tests() {
             var times = test(P, N)
             data.js_time.push(times.js)
             data.go_time.push(times.go)
+            data.go_parallelized_time.push(times.go_parallelized)
             data.rust_time.push(times.rust)
         }
     }
@@ -39,20 +41,24 @@ export function test(P, N) {
     const start = performance.now();
     js_test(P, N)
     const end1 = performance.now();
-    go_test(P, N)
-    const end2 = performance.now();
+    go_test(P, N, false)
+    const end2a = performance.now();
+    go_test(P, N, true)
+    const end2b = performance.now();
     rust.rust_test(P, N)
     const end3 = performance.now();
 
     var times = {
         'js': ((end1-start)/1000),
-        'go': ((end2-end1)/1000),
+        'go': ((end2a-end1)/1000),
+        'go_parallelized': ((end2b-end2a)/1000),
         'rust': ((end3-end2)/1000)
     }
 
     console.log("RESULTS FOR: ", P, N)
     console.log("JS: " + times.js + ' s')
     console.log("Go: " + times.go + ' s')
+    console.log("Go Parallelized: " + times.go_parallelized + ' s')
     console.log("Rust: " + times.rust + ' s')
 
     return times

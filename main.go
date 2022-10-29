@@ -10,6 +10,7 @@ import (
 func go_test(this js.Value, args []js.Value) interface{} {
 	var P = args[0].Int()
 	var N = args[1].Int()
+	var parallelize = args[2].Bool()
 	var a = 1
 	var b = 1
 	for p := 0; p < P; p++ {
@@ -17,12 +18,19 @@ func go_test(this js.Value, args []js.Value) interface{} {
 		for i := 0; i < N; i++ {
 			for j := 0; j < N; j++ {
 				for k := 0; k < N; k++ {
-					b += b * a
+					if (parallelize) {go last_loop(b, a, N)} else {last_loop(b, a, N)}
 				}
 			}
 		}
 	}
 	return b
+}
+
+func last_loop(b int, a int, N int) int {
+    for k := 0; k < N; k++ {
+        b += b * a
+    }
+    return b
 }
 
 func main() {
