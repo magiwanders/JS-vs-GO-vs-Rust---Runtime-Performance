@@ -15,8 +15,9 @@ init().then((wasm)=>{
 export async function run_tests() {
     var data = {
         'js_time': [],
+        'js_time_multithreaded': [],
         'go_time': [],
-        'go_parallelized_time': [],
+        'go_time_multithreaded': [],
         'rust_time': [],
         'P': [],
         'N': []
