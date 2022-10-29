@@ -97,7 +97,7 @@ async function js_test_multithreaded(P, N) {
         console.log("worker")
         worker[p].postMessage([b, a, N]);
         worker[p].onmessage = function(e) {
-			var b = e.data[0]
+			console.log(e.data[0])
             finished[worker.indexOf(e.srcElement)] = true
 		};
     }
