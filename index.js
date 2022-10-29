@@ -52,7 +52,7 @@ export function test(P, N) {
         'js': ((end1-start)/1000),
         'go': ((end2a-end1)/1000),
         'go_parallelized': ((end2b-end2a)/1000),
-        'rust': ((end3-end2)/1000)
+        'rust': ((end3-end2b)/1000)
     }
 
     console.log("RESULTS FOR: ", P, N)
