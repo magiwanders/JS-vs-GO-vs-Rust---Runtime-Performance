@@ -97,10 +97,8 @@ async function js_test_multithreaded(P, N) {
             finished[worker.indexOf(e.srcElement)] = true
 		};
     }
-
     while(!finished.every(worker => worker === true)) await delay(1)
-
-    return [matrixRes_multithreaded, finished]
+    return b
 }
 
 const delay = ms => new Promise(res => setTimeout(res, ms));
