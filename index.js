@@ -26,7 +26,7 @@ export async function run_tests() {
         for (var N = 0; N <= 500; N+=50) {
             data.P.push(P)
             data.N.push(N)
-            var times = test(P, N)
+            var times = await test(P, N)
             data.js_time.push(times.js)
             data.js_time_multithreaded.push(times.js_multithreaded)
             data.go_time.push(times.go)
