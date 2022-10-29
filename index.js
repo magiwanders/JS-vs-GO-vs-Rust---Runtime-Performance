@@ -1,5 +1,5 @@
-import init from './pkg/runtime_experiments.js';
-import draw_plot from './plot.js';
+import init from 'pkg/runtime_experiments.js';
+import draw_plot from 'plot.js';
 
 var rust
 window.test = test
