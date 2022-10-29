@@ -1,5 +1,7 @@
 import init from '/JS-vs-GO-vs-Rust---Runtime-Performance/runtime_experiments.js';
 import draw_plot from '/JS-vs-GO-vs-Rust---Runtime-Performance/plot.js';
+//import init from '/runtime_experiments.js';
+//import draw_plot from '/plot.js';
 
 var rust
 window.test = test
@@ -87,11 +89,12 @@ function js_test(P, N) {
 }
 
 async function js_test_multithreaded(P, N) {
-    var worker = new Array(P).fill(new Worker('mult.js'))
+    var worker = new Array(P).fill(new Worker('./mult.js'))
     var finished = new Array(P).fill(false)
     var a = 1
     var b = 1
     for (var p = 0; p < P; p++) {
+        console.log("worker")
         worker[p].postMessage([b, a, N]);
         worker[p].onmessage = function(e) {
 			var b = e.data[0]
