@@ -10,6 +10,16 @@ export default function draw_plot(data) {
           y: data.N,
           z: data.js_time,
         },
+        {
+          name: 'Javascript Multithreaded',
+          showlegend: true,
+          opacity:0.2,
+          color:'green',
+          type: 'mesh3d',
+          x: data.P,
+          y: data.N,
+          z: data.js_time_multithreaded,
+        },
           {
           name: 'Go',
           showlegend: true,
@@ -21,14 +31,14 @@ export default function draw_plot(data) {
           z: data.go_time,
         },
           {
-          name: 'Go Parallelized',
+          name: 'Go Multithreaded',
           showlegend: true,
           opacity:0.2,
           color:'black',
           type: 'mesh3d',
           x: data.P,
           y: data.N,
-          z: data.go_time,
+          z: data.go_time_multithreaded,
         },
            {
            name: 'Rust',
