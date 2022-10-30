@@ -10,9 +10,11 @@ window.run_tests = run_tests
 init().then((wasm)=>{
     console.log('Rust WASM Initialized.')
     rust = wasm
-//    var P = 10, N = 40;
-//    test(P, N)
 })
+
+function get(id) {
+    return parseInt(document.getElementById(id).value)
+}
 
 export async function run_tests() {
     var data = {
@@ -25,8 +27,8 @@ export async function run_tests() {
         'N': []
     }
 
-    for (var P = 0; P <= 25; P+=5) {
-        for (var N = 0; N <= 500; N+=50) {
+    for (var P = get('Pfrom'); P <= get('Pto'); P+=get('Pstep')) {
+        for (var N = get('Nfrom'); N <= get('Nto'); N+=get('Nstep')) {
             data.P.push(P)
             data.N.push(N)
             var times = await test(P, N)
@@ -89,20 +91,19 @@ function js_test(P, N) {
 }
 
 async function js_test_multithreaded(P, N) {
-    var worker = new Array(P).fill(new Worker('./mult.js'))
+    var worker = new Array(P)
     var finished = new Array(P).fill(false)
     var a = 0.5
     var b = 0.5
     for (var p = 0; p < P; p++) {
-        console.log("worker")
+        worker[p] = new Worker('./mult.js')
         worker[p].postMessage([b, a, N]);
         worker[p].onmessage = function(e) {
-			console.log(e.data[0])
+//			console.log(e.data[0])
             finished[worker.indexOf(e.srcElement)] = true
 		};
     }
     while(!finished.every(worker => worker === true)) await delay(1)
-    console.log('Ended multithreaded test')
     return b
 }
 

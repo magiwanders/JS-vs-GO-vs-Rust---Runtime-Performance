@@ -14,7 +14,7 @@ export default function draw_plot(data) {
           name: 'Javascript Multithreaded',
           showlegend: true,
           opacity:0.2,
-          color:'green',
+          color:'yellow',
           type: 'mesh3d',
           x: data.P,
           y: data.N,
